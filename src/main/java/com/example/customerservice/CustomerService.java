@@ -1,0 +1,15 @@
+package com.example.customerservice;
+
+import java.util.List;
+
+public interface CustomerService {
+    List<CustomerDto> getAllCustomers();
+    CustomerDto customerToCustomerDto(Customer customer);
+    Customer customerDtoToCustomer(CustomerDto customerDto);
+    CustomerDto addCustomer(String name);
+    void updateCustomerName(Long id, String newName);
+    CustomerDto findCustomerById(Long id);
+    void deleteCustomer (Long customerId);
+
+
+}
