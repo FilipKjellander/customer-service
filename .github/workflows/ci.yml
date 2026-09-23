@@ -14,3 +14,13 @@ jobs:
           java-version: '25'
           distribution: temurin
       - run: mvn -B package
+      - name: login-docker-hub
+        run: echo ${{secrets.DOCKER_HUB_TOKEN}} | docker login -u ${{secrets.DOCKER_USER}} --password-stdin
+      - name: build-image
+        run: |
+          docker build -t ${{secrets.DOCKER_USER}}/customer-service:${{github.run_number}} .
+      - name: push-to-docker-hub
+        run: |
+          docker push ${{secrets.DOCKER_USER}}/customer-service:${{github.run_number}}
+
+      
